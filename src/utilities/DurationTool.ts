@@ -18,6 +18,10 @@ export class DurationTool {
   public inverseDuration: number[] = [1/8, 1/4, 1/2, 1];
 
   constructor(private minDuration: Duration, private maxDuration: Duration) {
+    if (this.dureeOrder.findIndex((value) => value === minDuration) > this.dureeOrder.findIndex((value) => value === maxDuration)) {
+      throw new Error("Invalid duration");
+    }
+
     while (this.dureeOrder[0] != minDuration) {
       this.dureeOrder.shift();
       this.inverseDuration.pop();

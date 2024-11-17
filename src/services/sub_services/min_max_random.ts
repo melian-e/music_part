@@ -36,6 +36,7 @@ export function minMaxRandom() {
   let inputFirstDuration = document.getElementById(
     "duree-premiere-note",
   ) as HTMLInputElement;
+  let ecartMax = document.getElementById("ecart-max") as HTMLInputElement;
 
   if (
     inputStave === null ||
@@ -48,7 +49,8 @@ export function minMaxRandom() {
     inputMaxDuration === null ||
     inputMinDuration === null ||
     inputFirstNote === null ||
-    inputFirstOctave === null
+    inputFirstOctave === null ||
+    ecartMax === null
   ) {
     throw new Error("No input found");
   }
@@ -69,6 +71,8 @@ export function minMaxRandom() {
     parseInt(inputFirstOctave.value),
     inputFirstDuration.value as "w" | "h" | "q" | "8",
   );
+
+  let ecartMaxValue = parseInt(ecartMax.value);
 
   if (firstNote.higherThan(maxNote) || firstNote.lowerThan(minNote)) {
     throw new Error("Invalid max note");
@@ -95,13 +99,15 @@ export function minMaxRandom() {
 
     for (let i = stave.length; spaceLeft > 0; i++) {
       const duree = durationTool.getRandomDuration(spaceLeft);
+      const ecart = Math.floor(Math.random() * ecartMaxValue) + 1;
 
       const note = stave[i - 1]
-        ? stave[i - 1].getRandomNote(minNote, maxNote, duree)
+        ? stave[i - 1].getRandomNote(minNote, maxNote, duree, ecart)
         : staveArray[s - 1][staveArray[s - 1].length - 1].getRandomNote(
             minNote,
             maxNote,
             duree,
+            ecart,
           );
 
       stave.push(note);

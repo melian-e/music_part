@@ -35,17 +35,23 @@ export class CustomNote {
     );
   }
 
-  public getMultipleNext(n: number, duration: "w" | "h" | "q" | "8") {
+  public getMultipleNext(n: number, duration: "w" | "h" | "q" | "8", max: CustomNote) {
     let note: CustomNote = new CustomNote(this.note, this.octave, duration);
     for (let i = 0; i < n; i++) {
+      if (note.equals(max)) {
+        break;
+      }
       note = note.getNext(duration);
     }
     return note;
   }
 
-  public getMultiplePrev(n: number, duration: "w" | "h" | "q" | "8") {
+  public getMultiplePrev(n: number, duration: "w" | "h" | "q" | "8", min: CustomNote) {
     let note: CustomNote = new CustomNote(this.note, this.octave, duration);
     for (let i = 0; i < n; i++) {
+      if (note.equals(min)) {
+        break;
+      }
       note = note.getPrev(duration);
     }
     return note;
@@ -55,16 +61,19 @@ export class CustomNote {
     min: CustomNote,
     max: CustomNote,
     duration: "w" | "h" | "q" | "8",
-    span: number = 1,
+    span = 1,
   ) {
-    let note: CustomNote = new CustomNote(this.note, this.octave, duration);
-    let next = this.getMultipleNext(span, duration);
-    let prev = this.getMultiplePrev(span, duration);
+    const note: CustomNote = new CustomNote(this.note, this.octave, duration);
+    const next = this.getMultipleNext(span, duration, max);
+    const prev = this.getMultiplePrev(span, duration, min);
+
+    console.log("ecart", span)
+    console.log(prev, note, next);
 
     const allowNext = next.lowerThan(max);
     const allowPrev = prev.higherThan(min);
 
-    let random = Math.random();
+    const random = Math.random();
 
     if (allowNext && allowPrev) {
       if (random < 0.33) {

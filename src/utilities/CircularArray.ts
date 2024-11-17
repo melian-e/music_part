@@ -8,6 +8,6 @@ export class CircularArray<T> extends Array<T> {
   }
 
   public prev(current: T) {
-    return this[(this.indexOf(current) - 1) % this.length];
+    return this[(this.indexOf(current) - 1 + this.length) % this.length];
   }
 }

@@ -4,36 +4,36 @@ import { storePusher } from "./store_pusher";
 import { DurationTool } from "../../utilities/DurationTool";
 
 export function gamme() {
-  let inputStave = document.getElementById(
+  const inputStave = document.getElementById(
     "input-number-staves",
   ) as HTMLInputElement;
-  let inputBeatValue = document.getElementById(
+  const inputBeatValue = document.getElementById(
     "input-beat-value",
   ) as HTMLInputElement;
-  let inputNumBeat = document.getElementById(
+  const inputNumBeat = document.getElementById(
     "input-num-beat",
   ) as HTMLInputElement;
-  let inputMaxNote = document.getElementById("max-note") as HTMLInputElement;
-  let inputMinNote = document.getElementById("min-note") as HTMLInputElement;
-  let inputMaxOctave = document.getElementById(
+  const inputMaxNote = document.getElementById("max-note") as HTMLInputElement;
+  const inputMinNote = document.getElementById("min-note") as HTMLInputElement;
+  const inputMaxOctave = document.getElementById(
     "max-octave",
   ) as HTMLInputElement;
-  let inputMinOctave = document.getElementById(
+  const inputMinOctave = document.getElementById(
     "min-octave",
   ) as HTMLInputElement;
-  let inputMaxDuration = document.getElementById(
+  const inputMaxDuration = document.getElementById(
     "duration-max",
   ) as HTMLInputElement;
-  let inputMinDuration = document.getElementById(
+  const inputMinDuration = document.getElementById(
     "duration-min",
   ) as HTMLInputElement;
-  let inputFirstNote = document.getElementById(
+  const inputFirstNote = document.getElementById(
     "first-note",
   ) as HTMLInputElement;
-  let inputFirstOctave = document.getElementById(
+  const inputFirstOctave = document.getElementById(
     "first-octave",
   ) as HTMLInputElement;
-  let inputFirstDuration = document.getElementById(
+  const inputFirstDuration = document.getElementById(
     "duree-premiere-note",
   ) as HTMLInputElement;
 
@@ -53,18 +53,18 @@ export function gamme() {
     throw new Error("No input found");
   }
 
-  let maxNote = new CustomNote(
+  const maxNote = new CustomNote(
     inputMaxNote.value as Note,
     parseInt(inputMaxOctave.value),
     "w",
   );
-  let minNote = new CustomNote(
+  const minNote = new CustomNote(
     inputMinNote.value as Note,
     parseInt(inputMinOctave.value),
     "w",
   );
 
-  let firstNote = new CustomNote(
+  const firstNote = new CustomNote(
     inputFirstNote.value as Note,
     parseInt(inputFirstOctave.value),
     inputFirstDuration.value as "w" | "h" | "q" | "8",
@@ -93,7 +93,7 @@ export function gamme() {
     w: 1,
   };
 
-  let staveArray: CustomNote[][] = [];
+  const staveArray: CustomNote[][] = [];
 
   staveArray.push([firstNote]);
 
@@ -107,7 +107,7 @@ export function gamme() {
     }
 
     for (let i = stave.length; spaceLeft > 0; i++) {
-      const noteLimit = noteDurationsArrayRev.findLastIndex((value) => {
+      const noteLimit = noteDurationsArrayRev.findIndex((value) => {
         return value <= spaceLeft;
       });
 

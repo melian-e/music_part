@@ -34,7 +34,7 @@ export class DurationTool {
   }
 
   public getRandomDuration(spaceLeft: number): Duration {
-    const noteLimit = this.inverseDuration.findLastIndex((value) => {
+    const noteLimit = this.inverseDuration.findIndex((value) => {
       return value <= spaceLeft;
     });
 

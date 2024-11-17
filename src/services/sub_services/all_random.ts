@@ -3,13 +3,13 @@ import store from "./store";
 import { draw } from "../vexflow";
 
 export function allRandom() {
-    let inputStave = document.getElementById(
+    const inputStave = document.getElementById(
       "input-number-staves",
     ) as HTMLInputElement;
-    let inputBeatValue = document.getElementById(
+    const inputBeatValue = document.getElementById(
       "input-beat-value",
     ) as HTMLInputElement;
-    let inputNumBeat = document.getElementById(
+    const inputNumBeat = document.getElementById(
       "input-num-beat",
     ) as HTMLInputElement;
   
@@ -61,7 +61,7 @@ export function allRandom() {
   
       const notesArray: StaveNote[] = [];
       for (let i = 0; spaceLeft > 0; i++) {
-        const noteLimit = noteDurationsArray.findLastIndex((value) => {
+        const noteLimit = noteDurationsArray.findIndex((value) => {
           return value <= spaceLeft;
         });
   

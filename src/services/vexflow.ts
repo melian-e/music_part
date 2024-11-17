@@ -1,6 +1,5 @@
-import { Formatter, Renderer, Stave, StaveNote, Voice } from "vexflow";
+import { Formatter, Renderer, Stave, Voice } from "vexflow";
 import store from "./sub_services/store";
-import { CustomNote } from "../utilities/Note";
 
 export function draw(data?: {
   staveNumber?: number;
@@ -12,7 +11,7 @@ export function draw(data?: {
   const numBeat = data?.numBeat ?? 4;
 
   // Create an SVG renderer and attach it to the DIV element with id="output".
-  const div = document.getElementById("output");
+  const div : HTMLDivElement = document.getElementById("output") as HTMLDivElement;
 
   if (div === null || div instanceof HTMLDivElement === false) {
     throw new Error("No output div found");
@@ -35,7 +34,7 @@ export function draw(data?: {
   const context = renderer.getContext();
   context.setFont("Arial", 10);
 
-  let staves: Stave[] = [];
+  const staves: Stave[] = [];
 
   for (let i = 0; i < staveNumber; i++) {
     // Create a stave of width 400 at position 0, 40.
@@ -87,13 +86,13 @@ export function draw(data?: {
 }
 
 export function update() {
-  let inputStave = document.getElementById(
+  const inputStave = document.getElementById(
     "input-number-staves",
   ) as HTMLInputElement;
-  let inputBeatValue = document.getElementById(
+  const inputBeatValue = document.getElementById(
     "input-beat-value",
   ) as HTMLInputElement;
-  let inputNumBeat = document.getElementById(
+  const inputNumBeat = document.getElementById(
     "input-num-beat",
   ) as HTMLInputElement;
 

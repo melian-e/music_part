@@ -8,7 +8,7 @@ export function storePusher(staves: CustomNote[][]) {
   store.setStaveNoteArray([]);
 
   for (let s = 0; s < staves.length; s++) {
-    let notesArray = [];
+    const notesArray = [];
     for (let n = 0; n < staves[s].length; n++) {
       notesArray.push(
         new StaveNote({

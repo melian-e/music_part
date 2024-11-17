@@ -3,13 +3,13 @@ import store from "./store";
 import { draw } from "../vexflow";
 
 export function oneRandom() {
-    let inputStave = document.getElementById(
+    const inputStave = document.getElementById(
       "input-number-staves",
     ) as HTMLInputElement;
-    let inputBeatValue = document.getElementById(
+    const inputBeatValue = document.getElementById(
       "input-beat-value",
     ) as HTMLInputElement;
-    let inputNumBeat = document.getElementById(
+    const inputNumBeat = document.getElementById(
       "input-num-beat",
     ) as HTMLInputElement;
   
@@ -55,7 +55,7 @@ export function oneRandom() {
   
     let spaceLeft = numBeat * noteDurations[beatValue.toString()];
   
-    const noteLimit = noteDurationsArray.findLastIndex((value) => {
+    const noteLimit = noteDurationsArray.findIndex((value) => {
       return value <= spaceLeft;
     });
   
